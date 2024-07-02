@@ -18,7 +18,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Optional<StudentEntity> getStudentById(Long id) {
+    public Optional<StudentEntity> getStudentById(Integer id) {
         return studentRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public StudentEntity updateStudent(Long id, StudentEntity studentDetails) {
+    public StudentEntity updateStudent(Integer id, StudentEntity studentDetails) {
     	StudentEntity stud = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         stud.setFirstName(studentDetails.getFirstName());
         stud.setLastname(studentDetails.getLastname());
@@ -37,7 +37,7 @@ public class StudentService {
         return studentRepository.save(stud);
     }
 
-    public void deleteStudent(Long id) {
+    public void deleteStudent(Integer id) {
     	studentRepository.deleteById(id);
     }
 }

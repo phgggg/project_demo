@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import entity.StudentEntity;
 
 
-public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
+public interface StudentRepository extends JpaRepository<StudentEntity, Integer> {
 
 }
