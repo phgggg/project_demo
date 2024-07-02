@@ -20,6 +20,10 @@ public class StudentController {
     public List<StudentEntity> getAllStudent() {
         return studentService.getAllStudent();
     }
+    @GetMapping("/list")
+    public List<StudentEntity> getAllStudent1() {
+        return studentService.getAllStudent();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<StudentEntity> getStudentById(@PathVariable Integer id) {
