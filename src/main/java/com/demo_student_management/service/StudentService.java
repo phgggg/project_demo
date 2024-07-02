@@ -1,10 +1,10 @@
-package service;
+package com.demo_student_management.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entity.StudentEntity;
-import repository.StudentRepository;
+import com.demo_student_management.entity.*;
+import com.demo_student_management.repository.*;
 
 import java.util.List;
 import java.util.Optional;

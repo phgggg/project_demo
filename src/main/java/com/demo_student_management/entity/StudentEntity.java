@@ -1,4 +1,4 @@
-package entity;
+package com.demo_student_management.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

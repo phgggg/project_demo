@@ -1,11 +1,11 @@
-package controller;
+package com.demo_student_management.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import entity.StudentEntity;
-import service.StudentService;
+import com.demo_student_management.entity.*;
+import com.demo_student_management.service.*;
 
 import java.util.List;
 import java.util.Optional;
