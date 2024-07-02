@@ -1,4 +1,4 @@
-package com.demo.demo_student_management;
+package entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class student {
+public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -60,7 +60,7 @@ public class student {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public student(int id, String firstName, String lastname, String studentID, String department, String major,
+	public StudentEntity(int id, String firstName, String lastname, String studentID, String department, String major,
 			String country) {
 //		super();
 		this.id = id;

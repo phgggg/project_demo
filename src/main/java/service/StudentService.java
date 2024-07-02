@@ -1,30 +1,33 @@
-package com.demo.demo_student_management;
+package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import entity.StudentEntity;
+import repository.StudentRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class studentService {
+public class StudentService {
     @Autowired
-    private studentRepository studentRepository;
+    private StudentRepository studentRepository;
 
-    public List<student> getAllStudent() {
+    public List<StudentEntity> getAllStudent() {
         return studentRepository.findAll();
     }
 
-    public Optional<student> getStudentById(Long id) {
+    public Optional<StudentEntity> getStudentById(Long id) {
         return studentRepository.findById(id);
     }
 
-    public student createStudent(student student) {
+    public StudentEntity createStudent(StudentEntity student) {
         return studentRepository.save(student);
     }
 
-    public student updateStudent(Long id, student studentDetails) {
-    	student stud = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public StudentEntity updateStudent(Long id, StudentEntity studentDetails) {
+    	StudentEntity stud = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         stud.setFirstName(studentDetails.getFirstName());
         stud.setLastname(studentDetails.getLastname());
         stud.setStudentID(studentDetails.getStudentID());

@@ -1,26 +1,29 @@
-package com.demo.demo_student_management;
+package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import entity.StudentEntity;
+import service.StudentService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
-public class studentController {
+public class StudentController {
     @Autowired
-    private studentService studentService;
+    private StudentService studentService;
 
     @GetMapping
-    public List<student> getAllStudent() {
+    public List<StudentEntity> getAllStudent() {
         return studentService.getAllStudent();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<student> getStudentById(@PathVariable Long id) {
-        Optional<student> user = studentService.getStudentById(id);
+    public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
+        Optional<StudentEntity> user = studentService.getStudentById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
@@ -29,14 +32,14 @@ public class studentController {
     }
 
     @PostMapping
-    public student createStudent(@RequestBody student user) {
+    public StudentEntity createStudent(@RequestBody StudentEntity user) {
         return studentService.createStudent(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<student> updateStudent(@PathVariable Long id, @RequestBody student studentDetails) {
+    public ResponseEntity<StudentEntity> updateStudent(@PathVariable Long id, @RequestBody StudentEntity studentDetails) {
         try {
-        	student updatedStudent = studentService.updateStudent(id, studentDetails);
+        	StudentEntity updatedStudent = studentService.updateStudent(id, studentDetails);
             return ResponseEntity.ok(updatedStudent);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
