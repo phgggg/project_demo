@@ -1,21 +1,29 @@
-package com.demo_student_management.service;
+package com.demo.student_management.service;
 
+import com.demo.student_management.entity.StudentEntity;
+import com.demo.student_management.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo_student_management.entity.*;
-import com.demo_student_management.repository.*;
+import com.demo.student_management.entity.*;
+import com.demo.student_management.repository.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
-
+    @Autowired
+    private ClassRepository classRepository;
     public List<StudentEntity> getAllStudent() {
         return studentRepository.findAll();
+    }
+
+    public Set<ClassEntity> getClassList(Integer id) {
+        return classRepository.classList(id);
     }
 
     public Optional<StudentEntity> getStudentById(Integer id) {

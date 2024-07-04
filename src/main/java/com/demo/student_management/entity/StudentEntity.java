@@ -1,26 +1,27 @@
-package com.demo_student_management.entity;
+package com.demo.student_management.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+//    @GeneratedValue dValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
+	@Size(min=2,max=45, message = "firstname from 2 to 45 characters")
     @Column(name = "firstName")
     private String firstName;
-    
+
+	@Size(min=2,max=45)
     @Column(name = "lastName")
     private String lastName;
-    
+
+	@Size(min=2,max=45)
     @Column(name = "studentID")
     private String studentID;
     
@@ -32,7 +33,10 @@ public class StudentEntity {
     
     @Column(name = "country")
     private String country;
-    
+
+//	@ManyToMany(mappedBy = "classList")
+//	private Set<ClassEntity> classes;
+
     // Getters and setters
 	public int getId() {
 		return id;
