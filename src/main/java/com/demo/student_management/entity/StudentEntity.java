@@ -4,8 +4,6 @@ package com.demo.student_management.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
-import java.util.Set;
-
 @Entity
 @Table(name = "student")
 public class StudentEntity {
@@ -33,9 +31,6 @@ public class StudentEntity {
     
     @Column(name = "country")
     private String country;
-
-//	@ManyToMany(mappedBy = "classList")
-//	private Set<ClassEntity> classes;
 
     // Getters and setters
 	public int getId() {

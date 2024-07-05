@@ -2,6 +2,7 @@ package com.demo.student_management.controller;
 
 import com.demo.student_management.entity.ClassEntity;
 import com.demo.student_management.entity.StudentEntity;
+import com.demo.student_management.service.ClassInfoService;
 import com.demo.student_management.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +19,20 @@ import java.util.Set;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-
-    @GetMapping("/hello-world")
-    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
-    public StudentEntity HelloWorld() {
-        return new StudentEntity(5, "firstName","firstName","firstName","firstName","firstName","firstName");
-    }
+    @Autowired
+    private ClassInfoService classInfoService;
 
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<StudentEntity> getAllStudent() {
+
         return studentService.getAllStudent();
     }
 
-
-    @GetMapping("/{id}/classes")
+    @GetMapping("/{id}/class")
     @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
-    public Set<ClassEntity> getAllClass(@PathVariable Integer id) {
-        return studentService.getClassList(id);
+    public List<Object[]> getAllClassOfStudent(@PathVariable Integer id) {
+        return classInfoService.findClassesOfStudentId(id);
     }
 
     @GetMapping("/{id}")

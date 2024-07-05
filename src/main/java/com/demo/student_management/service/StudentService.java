@@ -10,20 +10,14 @@ import com.demo.student_management.repository.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private ClassRepository classRepository;
+
     public List<StudentEntity> getAllStudent() {
         return studentRepository.findAll();
-    }
-
-    public Set<ClassEntity> getClassList(Integer id) {
-        return classRepository.classList(id);
     }
 
     public Optional<StudentEntity> getStudentById(Integer id) {
