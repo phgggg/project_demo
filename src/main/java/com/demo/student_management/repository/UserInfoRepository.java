@@ -1,5 +1,5 @@
 package com.demo.student_management.repository;
-import com.demo.student_management.entity.UserInfo;
+import com.demo.student_management.dto.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

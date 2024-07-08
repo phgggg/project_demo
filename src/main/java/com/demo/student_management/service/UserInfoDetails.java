@@ -1,5 +1,5 @@
 package com.demo.student_management.service;
-import com.demo.student_management.entity.UserInfo;
+import com.demo.student_management.dto.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

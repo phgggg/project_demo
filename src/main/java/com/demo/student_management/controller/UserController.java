@@ -1,6 +1,6 @@
 package com.demo.student_management.controller;
-import com.demo.student_management.entity.AuthRequest;
-import com.demo.student_management.entity.UserInfo;
+import com.demo.student_management.dto.AuthRequest;
+import com.demo.student_management.dto.UserInfo;
 import com.demo.student_management.service.JwtService;
 import com.demo.student_management.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,20 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "Welcome this endpoint is not secure";
-    }
+    //@Value testing
+//    public String getValueFromFile() {
+//        return valueFromFile;
+//    }
+//
+//    @Value("${spring.datasource.url}")
+//    private String valueFromFile;
+//
+//    @GetMapping("/welcome")
+//    public String welcome() {
+//
+//
+//        return valueFromFile;
+//    }
 
     @PostMapping("/addNewUser")
     public String addNewUser(@RequestBody UserInfo userInfo) {
@@ -51,9 +61,8 @@ public class UserController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(authRequest.getUsername());
-        } else {
-            throw new UsernameNotFoundException("invalid user request !");
         }
+        throw new UsernameNotFoundException("invalid user request !");
     }
 
 }

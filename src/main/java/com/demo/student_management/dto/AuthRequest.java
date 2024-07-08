@@ -1,4 +1,4 @@
-package com.demo.student_management.entity;
+package com.demo.student_management.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

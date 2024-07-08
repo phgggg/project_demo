@@ -1,5 +1,5 @@
 package com.demo.student_management.service;
-import com.demo.student_management.entity.UserInfo;
+import com.demo.student_management.dto.UserInfo;
 import com.demo.student_management.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserInfoService implements UserDetailsService {
 
     @Autowired
-    private UserInfoRepository repository;
+    private UserInfoRepository userInfoRepository;
 
     @Autowired
     private PasswordEncoder encoder;
@@ -22,7 +22,7 @@ public class UserInfoService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<UserInfo> userDetail = repository.findByName(username);
+        Optional<UserInfo> userDetail = userInfoRepository.findByName(username);
 
         // Converting userDetail to UserDetails
         return userDetail.map(UserInfoDetails::new)
@@ -31,7 +31,7 @@ public class UserInfoService implements UserDetailsService {
 
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(encoder.encode(userInfo.getPassword()));
-        repository.save(userInfo);
+        userInfoRepository.save(userInfo);
         return "User Added Successfully";
     }
 

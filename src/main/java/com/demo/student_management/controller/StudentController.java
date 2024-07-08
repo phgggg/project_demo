@@ -5,6 +5,8 @@ import com.demo.student_management.entity.StudentEntity;
 import com.demo.student_management.service.ClassInfoService;
 import com.demo.student_management.service.StudentService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +19,8 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
+    private static Logger logger = LogManager.getLogger(StudentController.class);
+
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -58,7 +62,8 @@ public class StudentController {
         try {
         	StudentEntity updatedStudent = studentService.updateStudent(id, studentDetails);
             return ResponseEntity.ok(updatedStudent);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
+            logger.error("Error log message:", e);
             return ResponseEntity.notFound().build();
         }
     }

@@ -1,10 +1,11 @@
 package com.demo.student_management.controller;
 
 import com.demo.student_management.entity.ClassEntity;
-import com.demo.student_management.entity.StudentEntity;
 import com.demo.student_management.service.ClassInfoService;
 import com.demo.student_management.service.ClassService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @RestController
 @RequestMapping("/api/classes")
 public class ClassController {
+
+    private static Logger logger = LogManager.getLogger(ClassController.class);
     @Autowired
     private ClassService classService;
     @Autowired
@@ -57,9 +60,11 @@ public class ClassController {
         try {
             ClassEntity updatedClass = classService.updateClass(id, studentDetails);
             return ResponseEntity.ok(updatedClass);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
+            logger.error("Error log message:", e);
             return ResponseEntity.notFound().build();
         }
+
     }
 
     @DeleteMapping("/{id}")

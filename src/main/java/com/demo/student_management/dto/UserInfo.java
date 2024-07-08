@@ -1,4 +1,4 @@
-package com.demo.student_management.entity;
+package com.demo.student_management.dto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
