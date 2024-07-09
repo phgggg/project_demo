@@ -1,5 +1,6 @@
 package com.demo.student_management.service;
 import com.demo.student_management.dto.UserInfo;
+import com.demo.student_management.dto.UserInfoDetails;
 import com.demo.student_management.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,7 @@ public class UserInfoService implements UserDetailsService {
     private PasswordEncoder encoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserInfoDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<UserInfo> userDetail = userInfoRepository.findByName(username);
 

@@ -3,7 +3,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import com.demo.student_management.entity.ClassEntity;
-import java.util.List;
 
 @Component
 public interface ClassRepository extends JpaRepository<ClassEntity, Integer> {

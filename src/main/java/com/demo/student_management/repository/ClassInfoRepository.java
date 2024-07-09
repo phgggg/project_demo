@@ -4,9 +4,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import com.demo.student_management.entity.ClassEntity;
 import com.demo.student_management.entity.ClassInfoEntity;
-import com.demo.student_management.entity.StudentEntity;
+
 import java.util.List;
-import java.util.Set;
 
 
 @Component
