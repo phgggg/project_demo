@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -81,7 +82,11 @@ public class StudentServiceTest {
     void testCreateStudent_Success() {
 
         Integer id = 1;
+        String studentID = "2021000000";
+        String password = "Abc123!@#";
         StudentEntity classEntity = new StudentEntity();
+        classEntity.setPassword(password);
+        classEntity.setStudentID(studentID);
         classEntity.setId(id);
 
         when(studentRepository.save(classEntity)).thenReturn(classEntity);
@@ -90,24 +95,56 @@ public class StudentServiceTest {
 
         assertNotNull(result);
         assertEquals(id, result.getId());
+        assertEquals(studentID, result.getStudentID());
+        assertEquals(password, result.getPassword());
         verify(studentRepository, times(1)).save(classEntity);
+    }
+
+    void testWithPass(StudentEntity student, String password){
+        student.setPassword(password);
+        StudentEntity a = studentService.createStudent(student);
+        assertNull(a);
+    }
+
+    void testWithId(StudentEntity student, String id){
+        student.setStudentID(id);
+        StudentEntity a = studentService.createStudent(student);
+        assertNull(a);
     }
 
     @Test
     void testCreateStudent_Failed() {
         Integer id = 1;
+        String studentID = "2021000000";
+        String passwordKTDB = "Abc123123";
+        String passwordSo = "Abcabcabc";
+        String passwordInHoa = "abc123!@#";
+        String passwordLength = "Aa1!";
+        String passwordLengthHon30 = "Abc123!@#Abc123!@#Abc123!@#Abc123!@#";
         StudentEntity classEntity = new StudentEntity();
-        classEntity.setId(id); // Ensure this matches your actual field name in ClassEntity
+        classEntity.setStudentID(studentID);
+        classEntity.setId(id);
+        classEntity.setPassword("");
 
-        when(studentRepository.save(classEntity)).thenThrow(new RuntimeException("Database error"));
 
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            studentService.createStudent(classEntity);
-        });
+//        when(studentRepository.save(classEntity)).thenThrow(new RuntimeException("Database error"));
 
-        assertEquals("Database error", exception.getMessage());
-        verify(studentRepository, times(1)).save(classEntity);
+
+//        Exception exception = assertThrows(RuntimeException.class, () -> {
+//            studentService.createStudent(classEntity);
+//        });
+//
+//        assertEquals("Database error", exception.getMessage());
+
+        testWithPass(classEntity, passwordKTDB);
+        testWithPass(classEntity, passwordInHoa);
+        testWithPass(classEntity, passwordLength);
+        testWithPass(classEntity, passwordSo);
+        testWithPass(classEntity, passwordLengthHon30);
+        testWithId(classEntity, "");
+
+        verify(studentRepository, times(0)).save(classEntity);
     }
 
     

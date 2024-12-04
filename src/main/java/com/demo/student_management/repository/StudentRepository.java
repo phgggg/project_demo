@@ -11,4 +11,7 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Integer>
             "where student.id = :studentID", nativeQuery = true)
     Integer findStudentID(Integer studentID);
 
+    @Query(value = "SELECT studentID FROM student\n" +
+            "where student.id = :studentID", nativeQuery = true)
+    String findByStudentID(String studentID);
 }
